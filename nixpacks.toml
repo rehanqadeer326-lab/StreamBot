@@ -1,14 +1,15 @@
-# Final optimized nixpacks.toml
-providers = ["node", "python"]
+# Pure Nixpacks configuration (No auto-providers)
+providers = []
 
 [phases.setup]
-nixPkgs = ["ffmpeg"]
+nixPkgs = ["nodejs_20", "python3", "ffmpeg", "gcc"]
 
 [phases.install]
 dependsOn = ["setup"]
 cmds = [
     "npm install",
-    "python3 -m pip install -r requirements.txt"
+    "python3 -m venv /app/venv",
+    "/app/venv/bin/pip install -r requirements.txt"
 ]
 
 [phases.build]
@@ -16,4 +17,4 @@ dependsOn = ["install"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "node launcher.js"
+cmd = "PATH=\"/app/venv/bin:$PATH\" node launcher.js"
