@@ -1,7 +1,5 @@
-# Updated nixpacks.toml
-[providers]
-node = {}
-python = {}
+# Nixpacks configuration for StreamBot
+providers = ["node", "python"]
 
 [phases.setup]
 nixPkgs = ["nodejs", "python3", "ffmpeg"]
@@ -19,4 +17,3 @@ cmds = ["npm run build"]
 
 [start]
 cmd = "node launcher.js"
-#
