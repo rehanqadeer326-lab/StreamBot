@@ -1,5 +1,7 @@
-# Nixpacks configuration for StreamBot
-# This ensures that Node.js, Python, and FFMPEG are all installed.
+# Updated nixpacks.toml
+[providers]
+node = {}
+python = {}
 
 [phases.setup]
 nixPkgs = ["nodejs", "python3", "ffmpeg"]
