@@ -1,8 +1,8 @@
-# Nixpacks configuration for StreamBot
+# Final optimized nixpacks.toml
 providers = ["node", "python"]
 
 [phases.setup]
-nixPkgs = ["nodejs", "python3", "ffmpeg"]
+nixPkgs = ["ffmpeg"]
 
 [phases.install]
 dependsOn = ["setup"]
