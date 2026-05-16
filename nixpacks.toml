@@ -2,7 +2,7 @@
 # This ensures that Node.js, Python, and FFMPEG are all installed.
 
 [phases.setup]
-nixPkgs = ["nodejs_22", "python3", "ffmpeg"]
+nixPkgs = ["nodejs", "python3", "ffmpeg"]
 
 [phases.install]
 dependsOn = ["setup"]
