@@ -17,7 +17,7 @@ if (platform === "win32") {
 	if (arch === "x64") {
 		determinedFilename = "yt-dlp.exe";
 	}
-	else if (arch === "ia32") {    
+	else if (arch === "ia32") {
 		determinedFilename = "yt-dlp_x86.exe";
 	}
 } else if (platform === "darwin") {
@@ -43,14 +43,16 @@ const scriptsPath = nodePath.resolve(process.cwd(), "scripts");
 const exePath = nodePath.resolve(scriptsPath, filename);
 
 function args(url: string, options: Partial<YTFlags>): string[] {
-	const optArgs: string[] = [];
-	
+	const optArgs: string[] = [
+		'--js-runtime', 'node'
+	];
+
 	// Add cookies file if configured
 	if (config.ytdlpCookiesPath && existsSync(config.ytdlpCookiesPath)) {
 		optArgs.push('--cookies');
 		optArgs.push(config.ytdlpCookiesPath);
 	}
-	
+
 	for (const [key, val] of Object.entries(options)) {
 		if (val === null || val === undefined) {
 			continue;
@@ -87,7 +89,7 @@ export async function downloadExecutable() {
 		const release = releases[0];
 		const asset = release.assets.find(ast => ast.name === filename);
 		const version = release.tag_name;
-		
+
 		await new Promise((resolve, reject) => {
 			got.get(asset.browser_download_url).buffer().then(x => {
 				mkdirSync(scriptsPath, { recursive: true });
@@ -185,7 +187,7 @@ export async function downloadToTempFile(url: string, options: Partial<YTFlags> 
 		logger.error(errorMessage);
 		throw new Error(errorMessage);
 	}
-	
+
 	return tempFilePath;
 }
 

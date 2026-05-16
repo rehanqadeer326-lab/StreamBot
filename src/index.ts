@@ -1,3 +1,7 @@
+import { WebSocket } from 'ws';
+// @ts-ignore
+globalThis.WebSocket = WebSocket;
+
 import { Client } from "discord.js-selfbot-v13";
 import config from "./config.js";
 import fs from 'fs';
