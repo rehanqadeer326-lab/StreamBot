@@ -8,7 +8,7 @@ nixPkgs = ["nodejs", "python3", "ffmpeg"]
 dependsOn = ["setup"]
 cmds = [
     "npm install",
-    "pip install -r requirements.txt"
+    "python3 -m pip install -r requirements.txt"
 ]
 
 [phases.build]
@@ -16,4 +16,4 @@ dependsOn = ["install"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "npm start"
+cmd = "node launcher.js"

@@ -23,7 +23,11 @@ bot.on('error', (err) => {
 // Start the Python Dashboard if enabled
 if (dashboardEnabled) {
     console.log('\x1b[35m%s\x1b[0m', '🖥️ Starting Dashboard...');
-    const dashboard = spawn('python', ['dashboard/app.py'], { 
+    
+    // Use 'python3' on Linux/Railway and 'python' on Windows
+    const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+    
+    const dashboard = spawn(pythonCmd, ['dashboard/app.py'], { 
         stdio: 'inherit', 
         shell: true 
     });
