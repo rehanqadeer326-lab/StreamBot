@@ -1,0 +1,19 @@
+# Nixpacks configuration for StreamBot
+# This ensures that Node.js, Python, and FFMPEG are all installed.
+
+[phases.setup]
+nixPkgs = ["nodejs", "python3", "ffmpeg"]
+
+[phases.install]
+dependsOn = ["setup"]
+cmds = [
+    "npm install",
+    "pip install -r requirements.txt"
+]
+
+[phases.build]
+dependsOn = ["install"]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm start"
